@@ -103,7 +103,7 @@
     [self.view addSubview:TableHeaderView];
     
     UIButton *AddWaitingList = (UIButton *)[self.view viewWithTag:945];
-    [AddWaitingList addTarget:self action:@selector(AddWaitingListToRestaurant) forControlEvents:UIControlEventTouchUpInside];
+    [AddWaitingList addTarget:self action:@selector(RemoveWaitingListToRestaurant) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *ShowDirectionButton = (UIButton *)[self.view viewWithTag:77];
     [ShowDirectionButton addTarget:self action:@selector(ShowDirectionToRestaurant) forControlEvents:UIControlEventTouchUpInside];
@@ -116,6 +116,13 @@
     // Search user waitinglist details for today
     
     [self SearchUserWaitingListInfo];
+    
+}
+
+#pragma remove user from waitinglist
+
+-(void)RemoveWaitingListToRestaurant
+{
     
 }
 
