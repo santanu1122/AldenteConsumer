@@ -1,0 +1,72 @@
+//
+// Prefix header for all source files of the 'Aldente2' target in the 'Aldente2' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iOS SDK 4.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+
+#define DEBUGMODE @"NO"
+#define API @"http://aldenteapp.com/alDente/index.php/ios/"
+#define GraphAPI @"https://graph.facebook.com/"
+
+
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+#ifdef DEBUG
+#define IMFAPPPRINT(__fmt, ...) NSLog(@"%s: "__fmt, __PRETTY_FUNCTION__, ##__VA_ARGS__)
+#else
+#define IMFAPPPRINT(__fmt, ...) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPASSERT(__value) { if ( !(__value) ) { NSLog(@"%s: *ASSERT(%s)", __PRETTY_FUNCTION__, #__value); } } ((void)0)
+#else
+#define IMFAPPASSERT(__value) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPERROR(__info) NSLog(@"%s: *ERROR(%@)", __PRETTY_FUNCTION__, __info)
+#else
+#define IMFAPPERROR(__info) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPPRINTMETHOD() NSLog(@"%s", __PRETTY_FUNCTION__)
+#else
+#define IMFAPPPRINTMETHOD() ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef DEBUG
+#define IMFAPPTESTVALUE(__value, __info) { id __result = (__value) ? @"YES" : @"NO"; NSLog(@"%s: %@ is %@", __PRETTY_FUNCTION__, __info, __result); }
+#else
+#define IMFAPPTESTVALUE(__value, __info) ((void)0)
+#endif // #ifdef DEBUG
+    
+    
+#ifdef __cplusplus
+}
+
+
+#endif
