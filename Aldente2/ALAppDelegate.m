@@ -43,12 +43,11 @@
     
     NSLog(@"userid --- %@",[UserDefaults objectForKey:@"USERID"]);
     
-//    ALVerifyPhoneViewController *VarifyPhone = [[ALVerifyPhoneViewController alloc] init];
-//    [self.NavigationController pushViewController:VarifyPhone animated:NO];
+    // souvik
     
     if ([[UserDefaults objectForKey:@"USERID"] intValue] > 0) {
         
-        ALWaitlistViewController *AllRestaurantListViewController = [[ALWaitlistViewController alloc] init];
+        ALAllRestaurantListViewController *AllRestaurantListViewController = [[ALAllRestaurantListViewController alloc] init];
         [self.NavigationController pushViewController:AllRestaurantListViewController animated:NO];
         
     } else {
