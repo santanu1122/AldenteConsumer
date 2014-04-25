@@ -38,9 +38,20 @@
 @property (nonatomic,retain) NSString *ResturantDistance;
 @property (nonatomic,retain) NSString *ResturantAverageWaitTime;
 
+// Property for waitinglist
+
+@property (nonatomic,retain) NSString *ReservationId;
+@property (nonatomic,retain) NSString *PartySize;
+@property (nonatomic,retain) NSString *RestaurantownerId;
+@property (nonatomic,retain) NSString *Quotedtime;
+@property (nonatomic,retain) NSString *Notedata;
+@property (nonatomic,retain) NSString *AheadOfMe;
+
 -(id)initWithLogedinUserId:(NSString *)ParamLogedinUserId LogedInUserName:(NSString *)ParamLogedInUserName LogedInUserEmail:(NSString *)ParamLogedInUserEmail LogedInUserPhone:(NSString *)ParamLogedInUserPhone LogedInUserPassword:(NSString *)ParamLogedInUserPassword LogedInUserfbconnectId:(NSString *)ParamLogedInUserfbconnectId LogedInUsertwitterId:(NSString *)ParamLogedInUsertwitterId LogedInUserregister_date:(NSString *)ParamLogedInUserregister_date LogedInUserlastlogin_date:(NSString *)ParamLogedInUserlastlogin_date LogedInUserdevicetoken:(NSString *)ParamLogedInUserdevicetoken LogedInUserstatus:(NSString *)ParamLogedInUserstatus ALUserIsLogedIn:(BOOL)ParamALUserIsLogedIn;
 
 
 -(id)initWithResturantId:(NSString *)ParamResturantId ResturantAddress:(NSString *)ParamResturantAddress ResturantCity:(NSString *)ParamResturantCity ResturantEmail:(NSString *)ParamResturantEmail ResturantLogo:(NSString *)ParamResturantLogo ResturantName:(NSString *)ParamResturantName ResturantPhoneNo:(NSString *)ParamResturantPhoneNo ResturantState:(NSString *)ParamResturantState ResturantZip:(NSString *)ParamResturantZip ResturantDistance:(NSString *)ParamResturantDistance ResturantAverageWaitTime:(NSString *)ParamResturantAverageWaitTime;
+
+-(id)initWithReservationId:(NSString *)ParamReservationId PartySize:(NSString *)ParamPartySize RestaurantownerId:(NSString *)ParamRestaurantownerId Quotedtime:(NSString *)ParamQuotedtime Notedata:(NSString *)ParamNotedata AheadOfMe:(NSString *)ParamAheadOfMe;
 
 @end

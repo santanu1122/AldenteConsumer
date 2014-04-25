@@ -39,6 +39,7 @@
     NSURLConnection *Connection;
     UIView          *MainDataView;
     NSMutableArray *TableViewDataDictionary;
+    ALCreateObjectForData *LocalWaitingListData;
 }
 
 @property (retain, nonatomic) UITextField *SearchTextField;
@@ -187,6 +188,8 @@
             
             ALCreateObjectForData *LocalData = [[ALCreateObjectForData alloc] initWithResturantId:[DataDic objectForKey:@"resturant_id"] ResturantAddress:[DataDic objectForKey:@"resturant_address"] ResturantCity:[DataDic objectForKey:@"resturant_city"] ResturantEmail:[DataDic objectForKey:@"resturant_email"] ResturantLogo:[DataDic objectForKey:@"resturant_logo"] ResturantName:[DataDic objectForKey:@"resturant_name"] ResturantPhoneNo:[DataDic objectForKey:@"phone_number"] ResturantState:[DataDic objectForKey:@"restaurant_state"] ResturantZip:[DataDic objectForKey:@"restaurant_zipcode"] ResturantDistance:@"" ResturantAverageWaitTime:@"20 Mints"];
             
+            LocalWaitingListData = [[ALCreateObjectForData alloc] initWithReservationId:[DataDic objectForKey:@"reservationId"] PartySize:[DataDic objectForKey:@"Party_Size"] RestaurantownerId:[DataDic objectForKey:@"restaurantownerId"] Quotedtime:[DataDic objectForKey:@"Quotedtime"] Notedata:[DataDic objectForKey:@"Notedata"] AheadOfMe:[DataDic objectForKey:@"ahead_of_me"]];
+            
             UILabel *Reataurantnamelabel = (UILabel *)[MainDataView viewWithTag:73];
             [Reataurantnamelabel setText:LocalData.ResturantName];
             
@@ -287,7 +290,9 @@
         
         [self startSpin];
         
-        NSString* path = [NSString stringWithFormat:@"%@get_resturantlist",API];
+        NSString* path = [NSString stringWithFormat:@"%@RemoveFromWaitingList?ReservationId=%@&ReservationStatus=W",API,LocalWaitingListData.ReservationId];
+        
+        NSLog(@"path ---- %@",path);
         NSMutableURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
         AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
         

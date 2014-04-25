@@ -14,6 +14,8 @@
 
 @synthesize ResturantId,ResturantAddress,ResturantCity,ResturantEmail,ResturantLogo,ResturantName,ResturantPhoneNo,ResturantState,ResturantZip,ResturantDistance,ResturantAverageWaitTime;
 
+@synthesize ReservationId,PartySize,RestaurantownerId,Quotedtime,Notedata,AheadOfMe;
+
 -(id)initWithLogedinUserId:(NSString *)ParamLogedinUserId LogedInUserName:(NSString *)ParamLogedInUserName LogedInUserEmail:(NSString *)ParamLogedInUserEmail LogedInUserPhone:(NSString *)ParamLogedInUserPhone LogedInUserPassword:(NSString *)ParamLogedInUserPassword LogedInUserfbconnectId:(NSString *)ParamLogedInUserfbconnectId LogedInUsertwitterId:(NSString *)ParamLogedInUsertwitterId LogedInUserregister_date:(NSString *)ParamLogedInUserregister_date LogedInUserlastlogin_date:(NSString *)ParamLogedInUserlastlogin_date LogedInUserdevicetoken:(NSString *)ParamLogedInUserdevicetoken LogedInUserstatus:(NSString *)ParamLogedInUserstatus ALUserIsLogedIn:(BOOL)ParamALUserIsLogedIn
 {
     self = [super init];
@@ -52,6 +54,22 @@
         [self setResturantZip:ParamResturantZip];
         [self setResturantDistance:ParamResturantDistance];
         [self setResturantAverageWaitTime:ParamResturantAverageWaitTime];
+    }
+    return self;
+}
+
+-(id)initWithReservationId:(NSString *)ParamReservationId PartySize:(NSString *)ParamPartySize RestaurantownerId:(NSString *)ParamRestaurantownerId Quotedtime:(NSString *)ParamQuotedtime Notedata:(NSString *)ParamNotedata AheadOfMe:(NSString *)ParamAheadOfMe {
+    
+    
+    self = [super init];
+    if (self) {
+        
+        [self setReservationId:ParamReservationId];
+        [self setPartySize:ParamPartySize];
+        [self setRestaurantownerId:ParamRestaurantownerId];
+        [self setQuotedtime:ParamQuotedtime];
+        [self setNotedata:ParamNotedata];
+        [self setAheadOfMe:ParamAheadOfMe];
     }
     return self;
 }
