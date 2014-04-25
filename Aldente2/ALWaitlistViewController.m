@@ -190,6 +190,9 @@
             
             LocalWaitingListData = [[ALCreateObjectForData alloc] initWithReservationId:[DataDic objectForKey:@"reservationId"] PartySize:[DataDic objectForKey:@"Party_Size"] RestaurantownerId:[DataDic objectForKey:@"restaurantownerId"] Quotedtime:[DataDic objectForKey:@"Quotedtime"] Notedata:[DataDic objectForKey:@"Notedata"] AheadOfMe:[DataDic objectForKey:@"ahead_of_me"]];
             
+            UILabel *UserInFrontOfMe = (UILabel *)[MainDataView viewWithTag:107];
+            [UserInFrontOfMe setText:[NSString stringWithFormat:@"%@ People in front of you",[DataDic objectForKey:@"ahead_of_me"]]];
+            
             UILabel *Reataurantnamelabel = (UILabel *)[MainDataView viewWithTag:73];
             [Reataurantnamelabel setText:LocalData.ResturantName];
             
@@ -299,6 +302,9 @@
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             [self stopSpin];
+            
+            UIAlertView *RemoveWaitingListToRestaurantAlert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Waitinglist deleted Successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [RemoveWaitingListToRestaurantAlert show];
             NSLog(@"success: %@", operation.responseString);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
