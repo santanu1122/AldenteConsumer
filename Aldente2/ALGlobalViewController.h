@@ -10,7 +10,7 @@
 
 @interface ALGlobalViewController : UIViewController
 
--(void)AddfooterView ;
+-(void)AddfooterView :(int)SelectedIcon;
 -(void)GotoDifferentViewWithAnimation:(UIViewController *)ViewControllerName;
 - (void)startSpin;
 - (void)stopSpin;

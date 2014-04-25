@@ -80,7 +80,7 @@
     _SearchBackgroundView   = (UIView *)[self.view viewWithTag:109];
     [_SearchBackgroundView.layer setOpacity:0.2f];
     
-    [self AddfooterView];
+    [self AddfooterView:1];
     
     UIButton *AddWaitingList = (UIButton *)[self.view viewWithTag:945];
     [AddWaitingList addTarget:self action:@selector(AddWaitingListToRestaurant) forControlEvents:UIControlEventTouchUpInside];

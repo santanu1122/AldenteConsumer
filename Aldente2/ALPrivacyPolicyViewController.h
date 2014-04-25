@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ALGlobalAccess.h"
-
-@interface ALPrivacyPolicyViewController : HelperViewController
+#import "ALGlobalViewController.h"
+@interface ALPrivacyPolicyViewController : ALGlobalViewController
 
 @end

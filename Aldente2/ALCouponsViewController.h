@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ALCouponsViewController : UIViewController
+#import "ALGlobalViewController.h"
+@interface ALCouponsViewController : ALGlobalViewController
 
 @end

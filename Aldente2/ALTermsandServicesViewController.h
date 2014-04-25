@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ALTermsandServicesViewController : UIViewController
+#import "ALGlobalViewController.h"
+@interface ALTermsandServicesViewController : ALGlobalViewController
 
 @end

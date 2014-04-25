@@ -145,7 +145,7 @@ UserCurrentLLongitude   = [NSString stringWithFormat:@"%f",_location.location.co
 {
     // Prepare Scrren
     
-    [self AddfooterView];
+    [self AddfooterView:1];
     [self.navigationController setNavigationBarHidden:YES];
     [_HeaderView.layer setShadowColor:[UIColor blackColor].CGColor];
     [_HeaderView.layer setShadowOffset:CGSizeMake(0.0f, 0.9f)];

@@ -41,10 +41,6 @@
     
     NSUserDefaults *UserDefaults = [NSUserDefaults standardUserDefaults];
     
-    NSLog(@"userid --- %@",[UserDefaults objectForKey:@"USERID"]);
-    
-    // souvik test
-    
     if ([[UserDefaults objectForKey:@"USERID"] intValue] > 0) {
         
         ALAllRestaurantListViewController *AllRestaurantListViewController = [[ALAllRestaurantListViewController alloc] init];

@@ -47,7 +47,7 @@
 
 #pragma footerview
 
--(void)AddfooterView {
+-(void)AddfooterView :(int)SelectedIcon {
     
     UIView *FooterView = (UIView *)[self.view viewWithTag:654];
     UIView *FooterPanel=[[[NSBundle mainBundle] loadNibNamed:@"ExtendedDesign" owner:self options:Nil] objectAtIndex:0];
@@ -61,7 +61,7 @@
     UIView *AllMoreListView         = (UIView *)[FooterPanel viewWithTag:237];
     
     UIImageView *touchedImageView = (UIImageView *)[AllAirportListView viewWithTag:11];
-    [touchedImageView setImage:[UIImage imageNamed:@"icon1ON.png"]];
+    [touchedImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon%@ON.png",[NSString stringWithFormat:@"%d",SelectedIcon]]]];
     
     UITapGestureRecognizer *tapGesture0      =   [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBegan:)];
     [tapGesture0 setNumberOfTapsRequired:1];

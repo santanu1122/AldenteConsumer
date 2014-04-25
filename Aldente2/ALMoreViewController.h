@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ALMoreViewController : UIViewController
+#import "ALGlobalViewController.h"
+@interface ALMoreViewController : ALGlobalViewController
 
 @end

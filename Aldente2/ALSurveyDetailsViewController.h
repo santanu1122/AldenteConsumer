@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ALSurveyDetailsViewController : UIViewController
+#import "ALGlobalViewController.h"
+@interface ALSurveyDetailsViewController : ALGlobalViewController
 
 @end

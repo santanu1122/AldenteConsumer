@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ALMapDirectionViewController : UIViewController
+#import "ALGlobalViewController.h"
+@interface ALMapDirectionViewController : ALGlobalViewController
 
 @end

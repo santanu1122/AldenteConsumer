@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ALReservationsViewController : UIViewController
+#import "ALGlobalViewController.h"
+@interface ALReservationsViewController : ALGlobalViewController
 
 @end

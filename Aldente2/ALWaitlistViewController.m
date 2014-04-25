@@ -27,6 +27,7 @@
 #import "ALMapDirectionViewController.h"
 #import "ALReserveTableViewController.h"
 #import "ALCreateObject.h"
+#import "ZSImageView.h"
 
 @interface ALWaitlistViewController ()<UITextFieldDelegate, UIGestureRecognizerDelegate,UIScrollViewDelegate,NSURLConnectionDelegate, UIAlertViewDelegate> {
     
@@ -66,7 +67,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-     [self AddfooterView];
+    [self AddfooterView:2];
     
     GlobalAccess = [[ALGlobalAccess alloc] init];
     Alconstants  = [[ALConstants alloc] init];

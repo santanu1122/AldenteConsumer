@@ -69,10 +69,13 @@
 - (void)startSpin
 {
     if (!loadingView) {
+        
         loadingView = [[UIImageView alloc] initWithFrame:CGRectMake(140, 380, 26, 26)];
         loadingView.image = [UIImage imageNamed:ALAllImages.APPLoaderIcon];
         [self.view addSubview:loadingView];
+        
     }
+    
     loadingView.hidden = NO;
     [CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
