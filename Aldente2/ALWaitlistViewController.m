@@ -120,15 +120,6 @@
     
 }
 
-#pragma remove user from waitinglist
-
--(void)RemoveWaitingListToRestaurant
-{
-    // Remove user from waitinglist
-    
-    
-}
-
 #pragma Search for user ,waitinglist info for today
 
 -(void)SearchUserWaitingListInfo
@@ -242,6 +233,15 @@
     [ConnectionError show];
 }
 
+#pragma remove user from waitinglist
+
+-(void)RemoveWaitingListToRestaurant
+{
+    UIAlertView *RemoveWaitingListToRestaurantAlert = [[UIAlertView alloc] initWithTitle:@"Remove From WaitList" message:@"Are you sure to remove yourself from WaitList ? " delegate:self cancelButtonTitle:@"YES" otherButtonTitles:@"NO", nil];
+    [RemoveWaitingListToRestaurantAlert setTag:110];
+    [RemoveWaitingListToRestaurantAlert show];
+}
+
 #pragma Reserve Table
 
 -(void)ReserveTableInRestaurant {
@@ -261,11 +261,27 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (alertView.tag == 301) {
-        
-        [MainDataView setHidden:YES];
-        [self SearchUserWaitingListInfo];
+    
+    switch (alertView.tag) {
+        case 301:
+            
+            [MainDataView setHidden:YES];
+            [self SearchUserWaitingListInfo];
+            
+            break;
+        case 110:
+            
+            [MainDataView setHidden:YES];
+            [self RemoveUserFromWaitList];
+            
+            break;
+            
     }
+}
+-(void)RemoveUserFromWaitList
+{
+    [self startSpin];
+    
 }
 -(IBAction)HideKeyboard:(id)sender {
      
