@@ -305,6 +305,7 @@
             
             UIAlertView *RemoveWaitingListToRestaurantAlert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Waitinglist deleted Successfully" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [RemoveWaitingListToRestaurantAlert show];
+            
             NSLog(@"success: %@", operation.responseString);
             
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
