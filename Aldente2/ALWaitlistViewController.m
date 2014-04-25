@@ -124,6 +124,7 @@
 -(void)RemoveWaitingListToRestaurant
 {
     // Remove user from waitinglist
+    
 }
 
 #pragma Search for user ,waitinglist info for today
