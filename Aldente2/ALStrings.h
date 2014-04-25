@@ -73,4 +73,13 @@
 +(NSString * const) ErrorRegistrationScreenPasswordFiledBlank;
 +(NSString * const) ErrorRegistrationScreenPasswordValidate;
 +(NSString * const) ErrorRegistrationScreenTermsNotSelected;
+
+
+/*
+ 
+ Waitlist text details
+ 
+ */
+
++(NSString * const) WaitListViewHeaderTitle;
 @end

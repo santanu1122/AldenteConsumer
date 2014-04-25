@@ -45,4 +45,8 @@
 
 + (float) ALGetGlobalSearchTermsTextFontSize;
 + (UIColor *) AlTextFiledTextColor;
+
+// waitlist
+
++ (float) ALWaitListViewTitleFontSize;
 @end

@@ -63,4 +63,8 @@ NSString * const AFFontSecondSemiBold    = @"SegoeUI-SemiBold";
 + (NSString *)ALLogedInUserstatus { return @"ALLogedInUserstatus"; }
 + (NSString *)UserSelectedLogedInType { return @"UserSelectedLogedInType"; }
 + (NSString *)UserIslogedIn { return @"UserIslogedIn"; }
+
+// waitlist
+
++ (float) ALWaitListViewTitleFontSize { return 22.0; }
 @end

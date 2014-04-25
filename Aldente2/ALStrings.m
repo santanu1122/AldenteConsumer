@@ -69,4 +69,15 @@
 +(NSString * const) ErrorRegistrationScreenPasswordFiledBlank { return @"Password can't be blank"; }
 +(NSString * const) ErrorRegistrationScreenPasswordValidate { return @"Minimum character for Password is 6"; }
 +(NSString * const) ErrorRegistrationScreenTermsNotSelected { return @"You have to agree our terms and condition"; }
+
+
+
+/*
+ 
+ Waitlist text details
+ 
+*/
+
++(NSString * const) WaitListViewHeaderTitle { return @"Wait List"; }
+
 @end

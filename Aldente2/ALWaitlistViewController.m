@@ -28,6 +28,7 @@
 #import "ALReserveTableViewController.h"
 #import "ALCreateObject.h"
 #import "ZSImageView.h"
+#import "AFNetworking.h"
 
 @interface ALWaitlistViewController ()<UITextFieldDelegate, UIGestureRecognizerDelegate,UIScrollViewDelegate,NSURLConnectionDelegate, UIAlertViewDelegate> {
     
@@ -74,7 +75,7 @@
     
     [self.navigationController setNavigationBarHidden:YES];
     
-    _SearchTextField       = [GlobalAccess GenerateTextFieldForAcess:111 Delegate:self TextFiledtextColor:[UIColor whiteColor] TextFieldsetFontSize:15.0f TextFieldFont:ALAppServices.AFFontRegular GlobalView:self.view PlaceholderText:@"Search by Restaurants or location"];
+    _SearchTextField       = [GlobalAccess GenerateTextFieldForAcess:111 Delegate:self TextFiledtextColor:[UIColor whiteColor] TextFieldsetFontSize:ALAppServices.ALGetGlobalSearchTermsTextFontSize TextFieldFont:ALAppServices.AFFontRegular GlobalView:self.view PlaceholderText:ALStrings.GlobalSearchTermsText];
     [_SearchTextField setDelegate:self];
     
     _SearchBackgroundView   = (UIView *)[self.view viewWithTag:109];
@@ -96,11 +97,11 @@
     [TableHeaderView addSubview:TableHeaderBackView];
     
     UILabel *TableviewDetails = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 320, 20)];
-    [TableviewDetails setText:@"Wait List"];
+    [TableviewDetails setText:ALStrings.WaitListViewHeaderTitle];
     [TableHeaderView addSubview:TableviewDetails];
     [TableviewDetails setTextAlignment:NSTextAlignmentCenter];
     [TableviewDetails setTextColor:[UIColor whiteColor]];
-    [TableviewDetails setFont:[UIFont fontWithName:ALAppServices.AFFontSecondSemiBold size:22]];
+    [TableviewDetails setFont:[UIFont fontWithName:ALAppServices.AFFontSecondSemiBold size:ALAppServices.ALWaitListViewTitleFontSize]];
     [self.view addSubview:TableHeaderView];
     
     UIButton *AddWaitingList = (UIButton *)[self.view viewWithTag:945];
@@ -271,17 +272,42 @@
             break;
         case 110:
             
-            [MainDataView setHidden:YES];
-            [self RemoveUserFromWaitList];
-            
+            if (buttonIndex == 0) {
+                
+                [MainDataView setHidden:YES];
+                [self RemoveUserFromWaitList];
+            }
             break;
             
     }
 }
 -(void)RemoveUserFromWaitList
 {
-    [self startSpin];
-    
+    @try {
+        
+        [self startSpin];
+        
+        NSString* path = [NSString stringWithFormat:@"%@get_resturantlist",API];
+        NSMutableURLRequest* request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+        
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [self stopSpin];
+            NSLog(@"success: %@", operation.responseString);
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            [self stopSpin];
+            NSLog(@"error: %@",  operation.responseString);
+        }];
+        
+        [operation start];
+    }
+    @catch (NSException *exception) {
+        
+        NSLog(@"exception --- %@",[NSString stringWithFormat:@"%@",exception]);
+    }
 }
 -(IBAction)HideKeyboard:(id)sender {
      
