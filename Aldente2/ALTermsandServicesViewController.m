@@ -63,7 +63,7 @@
     [self.navigationController setNavigationBarHidden:YES];
     
     
-    _SearchTextField       = [GlobalAccess GenerateTextFieldForAcess:111 Delegate:self TextFiledtextColor:[UIColor whiteColor] TextFieldsetFontSize:15.0f TextFieldFont:ALAppServices.AFFontRegular GlobalView:self.view PlaceholderText:@"Search by Restaurants or location"];
+    _SearchTextField       = [GlobalAccess GenerateTextFieldForAcess:111 Delegate:self TextFiledtextColor:[UIColor whiteColor] TextFieldsetFontSize:ALAppServices.ALGetGlobalSearchTermsTextFontSize TextFieldFont:ALAppServices.AFFontRegular GlobalView:self.view PlaceholderText:ALStrings.GlobalSearchTermsText];
     [_SearchTextField setDelegate:self];
     
     [_HeaderView.layer setShadowColor:[UIColor blackColor].CGColor];

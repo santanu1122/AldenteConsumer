@@ -60,9 +60,6 @@
     UIView *AllCouponsListView      = (UIView *)[FooterPanel viewWithTag:236];
     UIView *AllMoreListView         = (UIView *)[FooterPanel viewWithTag:237];
     
-    UIImageView *touchedImageView = (UIImageView *)[AllAirportListView viewWithTag:11];
-    [touchedImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon%@ON.png",[NSString stringWithFormat:@"%d",SelectedIcon]]]];
-    
     UITapGestureRecognizer *tapGesture0      =   [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchBegan:)];
     [tapGesture0 setNumberOfTapsRequired:1];
     [AllAirportListView addGestureRecognizer:tapGesture0];
@@ -83,6 +80,29 @@
     [tapGesture4 setNumberOfTapsRequired:1];
     [AllMoreListView addGestureRecognizer:tapGesture4];
     
+    UIImageView *touchedImageView;
+    
+    switch (SelectedIcon) {
+        case 1:
+            touchedImageView = (UIImageView *)[AllAirportListView viewWithTag:11];
+            break;
+        case 2:
+            touchedImageView = (UIImageView *)[AllWaitListView viewWithTag:11];
+            break;
+        case 3:
+            touchedImageView = (UIImageView *)[AllReservationListView viewWithTag:11];
+            break;
+        case 4:
+            touchedImageView = (UIImageView *)[AllCouponsListView viewWithTag:11];
+            break;
+        case 5:
+            touchedImageView = (UIImageView *)[AllMoreListView viewWithTag:11];
+            break;
+        default:
+            touchedImageView = (UIImageView *)[AllAirportListView viewWithTag:11];
+            break;
+    }
+    [touchedImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"icon%@ON.png",[NSString stringWithFormat:@"%d",SelectedIcon]]]];
 }
 
 -(void)touchBegan :(UITapGestureRecognizer *)Recognizer
@@ -106,7 +126,6 @@
             break;
             
     }
-    
     if(nextViewController)[self GotoDifferentViewWithAnimation:nextViewController];
 }
 -(void)GotoDifferentViewWithAnimation:(UIViewController *)ViewControllerName {

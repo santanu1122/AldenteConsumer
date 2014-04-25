@@ -255,6 +255,7 @@
 -(void)ShowDirectionToRestaurant {
     
     ALMapDirectionViewController *ShowMapDirectionView = [[ALMapDirectionViewController alloc] init];
+    ShowMapDirectionView.LastVisitedView = WaitingListView;
     [self GotoDifferentViewWithAnimation:ShowMapDirectionView];
 }
 

@@ -199,6 +199,8 @@
 -(void)ShowDirectionToRestaurant {
     
     ALMapDirectionViewController *ShowMapDirectionView = [[ALMapDirectionViewController alloc] init];
+    ShowMapDirectionView.LastVisitedView = RestaurantDetailsView;
+    ShowMapDirectionView.RastaurantUniqueId = _RestaurantUniqueId;
     [self GotoDifferentViewWithAnimation:ShowMapDirectionView];
 }
 

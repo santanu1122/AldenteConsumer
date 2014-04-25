@@ -39,6 +39,7 @@
 @property (retain, nonatomic) UIButton *SearchTextButton;
 @property (retain, nonatomic) UIView *SearchBackgroundView;
 @property (retain, nonatomic) IBOutlet UIView *HeaderView;
+@property(nonatomic, copy) NSArray *viewControllers;
 @end
 
 @implementation ALMapDirectionViewController
@@ -47,6 +48,8 @@
 @synthesize SearchTextButton            = _SearchTextButton;
 @synthesize SearchBackgroundView        = _SearchBackgroundView;
 @synthesize HeaderView                  = _HeaderView;
+@synthesize LastVisitedView             = _LastVisitedView;
+@synthesize RastaurantUniqueId          = _RastaurantUniqueId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -125,11 +128,19 @@
 
 -(void)GoBackTOPreviousScreen {
     
-    ALRestaurantDetailsViewController *RestaurantDetails = [[ALRestaurantDetailsViewController alloc] init];
-    [self GotoDifferentViewWithAnimation:RestaurantDetails];
-    
+    if (_LastVisitedView == RestaurantDetailsView) {
+        
+        ALRestaurantDetailsViewController *RestaurantDetails = [[ALRestaurantDetailsViewController alloc] init];
+        RestaurantDetails.RestaurantUniqueId = _RastaurantUniqueId;
+        [self GotoDifferentViewWithAnimation:RestaurantDetails];
+        
+    } else if (_LastVisitedView == WaitingListView) {
+        
+        ALWaitlistViewController *waitingListView = [[ALWaitlistViewController alloc] init];
+        [self GotoDifferentViewWithAnimation:waitingListView];
+        
+    }
 }
-
 
 -(IBAction)HideKeyboard:(id)sender {
     

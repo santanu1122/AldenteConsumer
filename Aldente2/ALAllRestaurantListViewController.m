@@ -146,12 +146,16 @@ UserCurrentLLongitude   = [NSString stringWithFormat:@"%f",_location.location.co
     // Prepare Scrren
     
     [self AddfooterView:1];
+    
     [self.navigationController setNavigationBarHidden:YES];
+    
     [_HeaderView.layer setShadowColor:[UIColor blackColor].CGColor];
     [_HeaderView.layer setShadowOffset:CGSizeMake(0.0f, 0.9f)];
+    
     _SearchBackgroundView   = (UIView *)[self.view viewWithTag:109];
     [_SearchBackgroundView.layer setOpacity:0.2f];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:ALAllImages.APPBackgroundImage]]];
+    
     _SearchTextField       = [GlobalAccess GenerateTextFieldForAcess:111 Delegate:self TextFiledtextColor:[UIColor whiteColor] TextFieldsetFontSize:ALAppServices.ALGetGlobalSearchTermsTextFontSize TextFieldFont:ALAppServices.AFFontRegular GlobalView:self.view PlaceholderText:ALStrings.GlobalSearchTermsText];
     [_SearchTextField setDelegate:self];
     
