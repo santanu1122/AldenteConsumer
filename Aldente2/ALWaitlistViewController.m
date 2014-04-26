@@ -268,23 +268,19 @@
 
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
     switch (alertView.tag) {
         case 301:
             
             [MainDataView setHidden:YES];
             [self SearchUserWaitingListInfo];
-            
             break;
         case 110:
-            
             if (buttonIndex == 0) {
                 
                 [MainDataView setHidden:YES];
                 [self RemoveUserFromWaitList];
             }
             break;
-            
     }
 }
 -(void)RemoveUserFromWaitList

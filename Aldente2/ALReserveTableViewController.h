@@ -10,5 +10,5 @@
 #import "ALGlobalViewController.h"
 
 @interface ALReserveTableViewController : ALGlobalViewController
-
+@property (nonatomic,retain) NSString *RestaurantId;
 @end

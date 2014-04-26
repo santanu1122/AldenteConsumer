@@ -39,16 +39,16 @@ typedef enum {
 
 } SelectionOptionSelect;
 
-@interface ALReserveTableViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate,RMDateSelectionViewControllerDelegate,UITextViewDelegate,UIScrollViewDelegate>
+@interface ALReserveTableViewController ()<UITextFieldDelegate,UIGestureRecognizerDelegate,RMDateSelectionViewControllerDelegate,UITextViewDelegate,UIScrollViewDelegate,UIAlertViewDelegate>
 {
     ALGlobalAccess *GlobalAccess;
     ALConstants    *Alconstants;
     UITapGestureRecognizer *tapGesture;
 }
-@property (retain, nonatomic) UITextField *SearchTextField;
-@property (retain, nonatomic) UIButton *SearchTextButton;
-@property (retain, nonatomic) UIView *SearchBackgroundView;
-@property (retain, nonatomic) IBOutlet UIView *HeaderView;
+@property (retain, nonatomic) UITextField           *SearchTextField;
+@property (retain, nonatomic) UIButton              *SearchTextButton;
+@property (retain, nonatomic) UIView                *SearchBackgroundView;
+@property (retain, nonatomic) IBOutlet UIView       *HeaderView;
 @property (nonatomic,retain) UITextField            *BookingDateText;
 @property (nonatomic,retain) UITextField            *BookingHrText;
 @property (nonatomic,retain) UITextField            *BookingMintText;
@@ -57,6 +57,8 @@ typedef enum {
 @property (nonatomic,retain) UITextView             *BookingNote;
 @property (nonatomic,retain) UIScrollView           *BookingScreenScrollView;
 @property (nonatomic,retain) UIButton               *doneButton;
+@property (nonatomic,retain) UIButton               *SubmitReservation;
+
 
 @property (assign) SelectionOptionSelect SelectionOptionSelectOption;
 @end
@@ -76,6 +78,8 @@ typedef enum {
 @synthesize BookingNote                 = _BookingNote;
 @synthesize BookingScreenScrollView     = _BookingScreenScrollView;
 @synthesize doneButton                  = _doneButton;
+@synthesize SubmitReservation           = _SubmitReservation;
+@synthesize RestaurantId                = _RestaurantId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -117,7 +121,7 @@ typedef enum {
     [_BookingScreenScrollView setScrollEnabled:YES];
     [_BookingScreenScrollView setUserInteractionEnabled:YES];
     [_BookingScreenScrollView setDelegate:self];
-    [_BookingScreenScrollView setContentSize:CGSizeMake(_BookingScreenScrollView.layer.frame.size.width, _BookingScreenScrollView.layer.frame.size.height+150)];
+    [_BookingScreenScrollView setContentSize:CGSizeMake(_BookingScreenScrollView.layer.frame.size.width, _BookingScreenScrollView.layer.frame.size.height)];
     
     _BookingDateText = [GlobalAccess GenerateTextFieldForAcess:75 Delegate:self TextFiledtextColor:[UIColor whiteColor] TextFieldsetFontSize:ALAppServices.ALTermsAndServicesFontSize TextFieldFont:ALAppServices.AFFontRegular GlobalView:self.view PlaceholderText:@"Date"];
     [_BookingDateText setDelegate:self];
@@ -143,10 +147,100 @@ typedef enum {
     UIButton *BookingTime       = (UIButton *)[self.view viewWithTag:85];
     [BookingTime addTarget:self action:@selector(openDateSelectionBookingTime:) forControlEvents:UIControlEventTouchUpInside];
     
+    _SubmitReservation      = (UIButton *)[self.view viewWithTag:365];
+    [_SubmitReservation addTarget:self action:@selector(SubmitReservation:) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:ALAllImages.APPBackgroundImage]]];
     
 }
 
+-(IBAction)SubmitReservation:(id)sender
+{
+    BOOL Is_validate            = YES;
+    NSString *AlertViewText     = nil;
+    
+    if (!_BookingDateText.text.length > 0) {
+        
+        AlertViewText           = @"Please select reservation date";
+        Is_validate             = NO;
+    } else if (!_BookingHrText.text.length > 0) {
+        
+        AlertViewText           = @"Please select Booking Time (Hour)";
+        Is_validate             = NO;
+    } else if (!_BookingMintText.text.length > 0) {
+        
+        AlertViewText           = @"Please select Booking Time (Minutes)";
+        Is_validate             = NO;
+    } else if (!_BookingHrText.text.length > 0) {
+        
+        AlertViewText           = @"Please select Booking Hour";
+        Is_validate             = NO;
+    } else if (!_BookingAMPMText.text.length > 0) {
+        
+        AlertViewText           = @"Please select AM/PM";
+        Is_validate             = NO;
+    } else if (![Alconstants CleanTextField:_BookingPartysizeText.text].length > 0) {
+        
+        AlertViewText           = @"Partysize can't be blank";
+        Is_validate             = NO;
+    }
+    
+    if (Is_validate) {
+        
+        [self ProcessReservation];
+        
+    } else {
+        
+        UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:@"Validation Error" message:AlertViewText delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [AlertView show];
+    }
+    
+}
+-(void)ProcessReservation
+{
+    [_BookingDateText resignFirstResponder];
+    [_BookingScreenScrollView setHidden:YES];
+    [self startSpin];
+    
+    @try {
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            NSString *StringData = [NSString stringWithFormat:@"%@ConsumerAddToreservationList?LogedinConsumerId=%@&BookingDate=%@&BookingHr=%@&BookingMint=%@&BookingAMPM=%@&PartySize=%@&NoteText=%@&RestaurantId=%@",API,[NSString stringWithFormat:@"%@",[self GetLoginUserId]],[[Alconstants CleanTextField:_BookingDateText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingHrText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingMintText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingAMPMText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingPartysizeText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingNote.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[NSString stringWithFormat:@"%@",_RestaurantId]];
+            
+            NSLog(@"StringData --- %@",StringData);
+            
+            NSData *dataFromContainingUrl = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:StringData]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self stopSpin];
+                
+                NSDictionary *getArray=[NSJSONSerialization JSONObjectWithData:dataFromContainingUrl options:kNilOptions error:nil];
+                
+                NSLog(@"getArray --- %@",getArray);
+                
+                if ([[getArray objectForKey:@"response"] isEqualToString:@"error"]) {
+                    
+                    UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[getArray objectForKey:@"message"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [AlertView setTag:121];
+                    [AlertView show];
+                    
+                } else {
+                    
+                    UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:@"Success" message:[getArray objectForKey:@"message"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    [AlertView setTag:122];
+                    [AlertView show];
+                }
+            });
+            
+        });
+    }
+    @catch (NSException *Exception) {
+        NSLog(@"Exception --- %@",[NSString stringWithFormat:@"%@",Exception]);
+    }
+    
+}
 - (void)keyboardWillShow:(NSNotification *)note {
     
     _doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
