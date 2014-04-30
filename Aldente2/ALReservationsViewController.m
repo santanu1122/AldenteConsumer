@@ -29,6 +29,7 @@
     
     ALGlobalAccess *GlobalAccess;
     ALConstants    *Alconstants;
+    NSMutableArray *TableViewDataDictionary;
     UITapGestureRecognizer *tapGesture;
 }
 
@@ -78,6 +79,78 @@
     [_UITableView setDataSource:self];
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:ALAllImages.APPBackgroundImage]]];
+}
+
+-(void)GetAllReservationListForUser {
+    
+    [self startSpin];
+    [_UITableView setHidden:YES];
+    
+//    @try {
+//        
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            
+//            NSError *Err = nil;
+//            
+//            NSString *urlString = [NSString stringWithFormat:@"%@GetAllResrvationList?LogedinConsumerId=%@&UserCurrentLatitude=%@&UserCurrentLongitude",API,[NSString stringWithFormat:@"%@",[self GetLoginUserId]],@"0.00000",@"0.00000"];
+//            NSLog(@"urlString ---%@",urlString);
+//            NSURL *url = [NSURL URLWithString:urlString];
+//            NSData *MainData = [[NSData alloc] initWithContentsOfURL:url options:kNilOptions error:&Err];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                
+//                NSError *Err = nil;
+//                NSMutableDictionary *DataDictioNary = [NSJSONSerialization JSONObjectWithData:MainData options:kNilOptions error:&Err];
+//                
+//                @try {
+//                    
+//                    if (!Err) {
+//                        
+//                        if ([[[DataDictioNary objectForKey:@"response"] objectForKey:@"response"] isEqualToString:@"success"]) {
+//                            
+//                            TableViewDataDictionary = [[NSMutableArray alloc] init];
+//                            
+//                            for (NSMutableDictionary *DataDic in [DataDictioNary objectForKey:@"consumerdetails"]) {
+//                                
+//                                [TableViewDataDictionary addObject:[[ALCreateObjectForData alloc] initWithResturantId:[DataDic objectForKey:@"resturant_id"] ResturantAddress:[DataDic objectForKey:@"resturant_address"] ResturantCity:[DataDic objectForKey:@"resturant_city"] ResturantEmail:[DataDic objectForKey:@"resturant_email"] ResturantLogo:[DataDic objectForKey:@"resturant_logo"] ResturantName:[DataDic objectForKey:@"resturant_name"] ResturantPhoneNo:[DataDic objectForKey:@"phone_number"] ResturantState:[DataDic objectForKey:@"restaurant_state"] ResturantZip:[DataDic objectForKey:@"restaurant_zipcode"] ResturantDistance:[DataDic objectForKey:@"resturantDistance"] ResturantAverageWaitTime:[DataDic objectForKey:@"resturantAverageWaitTime"]]];
+//                            }
+//                            [self stopSpin];
+//                            [_UITableView setHidden:NO];
+//                            [_UITableView reloadData];
+//                            
+//                        } else {
+//                            
+//                            NSException *theException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"Some error just occurred!" userInfo:nil];
+//                            NSLog(@"exception1 ---- %@",theException);
+//                            @throw theException;
+//                        }
+//                    } else {
+//                        NSException *theException = [NSException exceptionWithName:NSInvalidArgumentException reason:@"Some error just occurred!" userInfo:nil];
+//                        NSLog(@"exception2 ---- %@",theException);
+//                        @throw theException;
+//                    }
+//                }
+//                @catch (NSException *Exception) {
+//                    
+//                    [self stopSpin];
+//                    NSLog(@"exception3 ---- %@",Exception);
+//                    UIAlertView *Alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"%@",Exception] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:Nil, nil];
+//                    [Alert setTag:121];
+//                    [Alert show];
+//                }
+//            });
+//            
+//        });
+//    }
+//    @catch (NSException *exception) {
+//        
+//        [self stopSpin];
+//        NSLog(@"exception ---- %@",exception);
+//        UIAlertView *Alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"%@",exception] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:Nil, nil];
+//        [Alert setTag:122];
+//        [Alert show];
+//    }
+    
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat sectionHeaderHeight = 40;

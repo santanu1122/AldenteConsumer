@@ -191,6 +191,7 @@
 -(void)ReserveTableInRestaurant {
     
     ALReserveTableViewController *ReserveTableView = [[ALReserveTableViewController alloc] init];
+    ReserveTableView.RestaurantId =_RestaurantUniqueId;
     [self GotoDifferentViewWithAnimation:ReserveTableView];
 }
 

@@ -29,6 +29,10 @@
 #import "ALCreateObject.h"
 #import "ZSImageView.h"
 #import "AFNetworking.h"
+#import "FHSStream.h"
+#import "FHSTwitterEngine.h"
+
+static float const streamingTimeoutInterval = 30.0f;
 
 @interface ALWaitlistViewController ()<UITextFieldDelegate, UIGestureRecognizerDelegate,UIScrollViewDelegate,NSURLConnectionDelegate, UIAlertViewDelegate> {
     
@@ -126,6 +130,8 @@
 
 -(void)SearchUserWaitingListInfo
 {
+    
+    
     [self startSpin];
     
     @try {

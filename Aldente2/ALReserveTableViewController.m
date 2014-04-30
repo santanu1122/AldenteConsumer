@@ -81,6 +81,8 @@ typedef enum {
 @synthesize SubmitReservation           = _SubmitReservation;
 @synthesize RestaurantId                = _RestaurantId;
 
+NSString *Formateddate = nil;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -204,9 +206,13 @@ typedef enum {
     
     @try {
         
+        NSArray *DateArray   = [[Alconstants CleanTextField:_BookingDateText.text] componentsSeparatedByString:@"-"];
+        
+        Formateddate = [NSString stringWithFormat:@"%@-%@-%@",[DateArray objectAtIndex:2],[DateArray objectAtIndex:0],[DateArray objectAtIndex:1]];
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            NSString *StringData = [NSString stringWithFormat:@"%@ConsumerAddToreservationList?LogedinConsumerId=%@&BookingDate=%@&BookingHr=%@&BookingMint=%@&BookingAMPM=%@&PartySize=%@&NoteText=%@&RestaurantId=%@",API,[NSString stringWithFormat:@"%@",[self GetLoginUserId]],[[Alconstants CleanTextField:_BookingDateText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingHrText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingMintText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingAMPMText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingPartysizeText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingNote.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[NSString stringWithFormat:@"%@",_RestaurantId]];
+            NSString *StringData = [NSString stringWithFormat:@"%@ConsumerAddToreservationList?LogedinConsumerId=%@&BookingDate=%@&BookingHr=%@&BookingMint=%@&BookingAMPM=%@&PartySize=%@&NoteText=%@&RestaurantId=%@",API,[NSString stringWithFormat:@"%@",[self GetLoginUserId]],[Formateddate stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingHrText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingMintText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingAMPMText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingPartysizeText.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[[Alconstants CleanTextField:_BookingNote.text] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding],[NSString stringWithFormat:@"%@",_RestaurantId]];
             
             NSLog(@"StringData --- %@",StringData);
             
@@ -220,9 +226,9 @@ typedef enum {
                 
                 NSLog(@"getArray --- %@",getArray);
                 
-                if ([[getArray objectForKey:@"response"] isEqualToString:@"error"]) {
+                if ([[[getArray objectForKey:@"response"] objectForKey:@"response"] isEqualToString:@"error"]) {
                     
-                    UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[getArray objectForKey:@"message"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                    UIAlertView *AlertView = [[UIAlertView alloc] initWithTitle:@"Error" message:[[getArray objectForKey:@"response"] objectForKey:@"message"] delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                     [AlertView setTag:121];
                     [AlertView show];
                     

@@ -489,6 +489,12 @@
 		0D91550818EECEE9005A43BC /* sign-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign-up.png"; sourceTree = "<group>"; };
 		0D91550918EECEE9005A43BC /* single-input-box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "single-input-box.png"; sourceTree = "<group>"; };
 		0D91551118EEF1FB005A43BC /* sign-in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sign-in.png"; sourceTree = "<group>"; };
+		0D91FF3D190F6A85000C3D16 /* FHSStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSStream.h; sourceTree = "<group>"; };
+		0D91FF3E190F6A85000C3D16 /* FHSStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSStream.m; sourceTree = "<group>"; };
+		0D91FF40190F6AB9000C3D16 /* FHSTwitterEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FHSTwitterEngine.h; sourceTree = "<group>"; };
+		0D91FF41190F6AB9000C3D16 /* FHSTwitterEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FHSTwitterEngine.m; sourceTree = "<group>"; };
+		0D91FF45190F7709000C3D16 /* URLRetrieveData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLRetrieveData.h; sourceTree = "<group>"; };
+		0D91FF46190F7709000C3D16 /* URLRetrieveData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLRetrieveData.m; sourceTree = "<group>"; };
 		0D94C1D618F287E000AAE093 /* ALGlobalAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALGlobalAccess.h; sourceTree = "<group>"; };
 		0D94C1D718F287E000AAE093 /* ALGlobalAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALGlobalAccess.m; sourceTree = "<group>"; };
 		0D94C1DB18F2AC3200AAE093 /* ALCreateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALCreateObject.h; sourceTree = "<group>"; };
@@ -703,6 +709,12 @@
 		0D4B017B18EAA31A0032846D /* Aldente2 */ = {
 			isa = PBXGroup;
 			children = (
+				0D91FF3D190F6A85000C3D16 /* FHSStream.h */,
+				0D91FF3E190F6A85000C3D16 /* FHSStream.m */,
+				0D91FF40190F6AB9000C3D16 /* FHSTwitterEngine.h */,
+				0D91FF41190F6AB9000C3D16 /* FHSTwitterEngine.m */,
+				0D91FF45190F7709000C3D16 /* URLRetrieveData.h */,
+				0D91FF46190F7709000C3D16 /* URLRetrieveData.m */,
 				0D75D5BB18EAA4880065DD2F /* Vender */,
 				0D6B8EED18FFA4C5006FFD46 /* Before Login */,
 				0D6B8EEE18FFA519006FFD46 /* Landing Screen */,
